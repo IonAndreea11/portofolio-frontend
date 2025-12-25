@@ -1,0 +1,85 @@
+.home-contact-section {
+    background: var(--secondary);
+    color: var(--text);
+    padding: 80px 20px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+}
+
+.home-contact-title {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.home-contact-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--primary);
+    margin: 12px auto 0;
+}
+
+.home-contact-subtitle{
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: var(--text);
+}
+
+.home-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.home-contact-form input,
+.home-contact-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 12px 16px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.home-contact-form input:focus,
+.home-contact-form textarea:focus {
+    border-color: var(--light-primary);
+    box-shadow: 0 0 8px var(--primary-transparent);
+}
+
+.home-contact-btn{
+    background: var(--primary);
+    color: var(--secondary);
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.home-contact-btn:hover {
+    background: var(--light-primary);
+    transform: scale(1.05);
+}
+
+.home-contact-status {
+    margin-top: 15px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+@media (max-width: 900px) {
+  .contact-form {
+    width: 100%;
+    padding: 0 20px;
+  }
+}

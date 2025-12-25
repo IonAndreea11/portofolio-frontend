@@ -1,0 +1,51 @@
+.techloop-section {
+  text-align: center;
+  padding: 80px 0;
+  background-color: var(--secondary);
+}
+
+.techloop-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 1rem;
+}
+
+.techloop-title {
+  color: var(--primary);
+  font-family: "Raleway", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.techloop-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--primary);
+  margin: 12px auto 0;
+}
+
+.techloop-icon {
+  font-size: 3rem;
+  color: var(--secondary-text); 
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.techloop-icon:hover {
+  color: var(--hover); 
+  transform: scale(1.2);
+}
+
+.loop-container{
+position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
