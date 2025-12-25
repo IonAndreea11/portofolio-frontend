@@ -1,12 +1,10 @@
-/* =========================
-   HOME PROJECTS SECTION
-========================= */
-
 .home-projects-section {
   background: var(--secondary);
   color: var(--text);
   padding: 100px 80px;
   text-align: center;
+  position: relative;
+  overflow: visible;
 }
 
 .home-projects-title {
@@ -27,30 +25,21 @@
   margin: 12px auto 0;
 }
 
-/* =========================
-   GRID
-========================= */
-
 .home-projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, max-content);
-  gap: 40px;
+  display: flex;
   justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
-/* =========================
-   CARD CONTAINER
-========================= */
 
 .home-project-card {
   height: 400px;
-  width: 600px;
+  max-height: 400px;
+  flex: 0 1 500px;
   max-width: 100%;
 }
-
-/* =========================
-   FLIP FRONT
-========================= */
 
 .flip-front {
   background: var(--secondary-light);
@@ -110,10 +99,6 @@
   flex-grow: 1;
 }
 
-/* =========================
-   TECH TAGS
-========================= */
-
 .home-project-tech {
   display: flex;
   flex-wrap: wrap;
@@ -129,10 +114,6 @@
   font-size: 0.75rem;
   font-weight: 600;
 }
-
-/* =========================
-   VIEW PROJECT BUTTON
-========================= */
 
 .home-project-plus {
   align-self: flex-start;
@@ -151,16 +132,155 @@
   box-shadow: 0 0 15px var(--primary);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+.mobile-card {
+  height: 100%;
+}
 
-/* @media (max-width: 768px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .home-projects-section {
-    padding: 80px 30px;
+    padding: 80px 40px;
+  }
+
+  .home-projects-title {
+    margin-bottom: 40px;
+  }
+
+  .home-projects-grid {
+    /* display: grid;
+    grid-template-columns: repeat(2, minmax(250px, 1fr)); */
+    display: flex;
+    gap: 32px;
+    align-items: start;
   }
 
   .home-project-card {
     height: 400px;
+    flex: 0 1 500px;
+    max-width: 100%;
   }
-} */
+
+  .flip-card {
+    height: 100%;
+  }
+
+  .flip-card-inner {
+    height: 100%;
+  }
+
+  .flip-front,
+  .flip-back {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-projects-section {
+    min-height: auto;
+    padding: 70px 20px 100px;
+  }
+
+  .home-projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .home-project-card {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+  }
+
+  .flip-card {
+    perspective: none;
+  }
+
+  .flip-card-inner {
+    transform: none !important;
+  }
+
+  .flip-front,
+  .flip-back {
+    position: relative;
+    transform: none;
+    backface-visibility: visible;
+  }
+
+  .home-project-image img {
+    height: 200px;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .home-project-content {
+    padding: 16px;
+    font-size: 22px;
+  }
+
+  .home-project-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .flip-back {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 0 0 14px 14px;
+  }
+
+  .flip-back h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .flip-back p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .home-project-tech {
+    gap: 6px;
+  }
+
+  .home-project-tech span {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
+
+  .home-project-plus {
+    align-self: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-project-card {
+    height: auto;
+    max-height: none;
+  }
+
+  .flip-card,
+  .flip-card-inner {
+    height: auto;
+    min-height: unset;
+  }
+
+  .flip-back {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flip-back p {
+    margin-bottom: 16px;
+  }
+
+  .home-project-tech {
+    margin-bottom: 18px;
+  }
+
+  .home-project-plus {
+    margin-top: auto;
+    margin-bottom: 15px;
+  }
+}
