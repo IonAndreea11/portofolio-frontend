@@ -50,7 +50,7 @@ function Hero() {
             Hire Me
           </a>
           <a
-            href="https://drive.google.com/file/d/1uGfQi9BKlILqKMpnJ4LMv-1ZQZunIQne/view?usp=sharing"
+            href="https://drive.google.com/file/d/1VgfmdRs5npIN5lCPOBk5hr36VwoX7J22/view?usp=sharing"
             className="hero-btn resume-btn"
             target="_blank"
             rel="noopener noreferrer"

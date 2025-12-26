@@ -36,9 +36,9 @@ function AboutMe() {
     <section className="about-page" id="about">
       {!isMobile && (
         <LightPillar
-          topColor="#00C6FF"
-          bottomColor="#1e1e2f"
-          intensity={0.7}
+          topColor="#1e1e2f"
+          bottomColor="#00b4d8"
+          intensity={1}
           rotationSpeed={0.15}
           interactive={false}
           glowAmount={0.004}

@@ -155,7 +155,7 @@
 @media (max-width: 900px) {
   .hero-section {
     flex-direction: column;
-    height: 800px;
+    height: 900px;
     padding-top: 30px;
   }
 
