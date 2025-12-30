@@ -13,6 +13,7 @@ function Navbar() {
       setIsMobile(window.innerWidth <= 768);
       if (window.innerWidth > 768) setMenuOpen(false);
     };
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -30,26 +31,35 @@ function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMobile, menuOpen]);
 
+  const goHome = (e) => {
+    e.preventDefault();
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-  const goToSection = (hash) => {
+  const goToSkills = (e) => {
+    e.preventDefault();
+    navigate("/", { state: { tab: "skills" } });
+    setMenuOpen(false);
+  };
+
+  const goToContact = (e) => {
+    e.preventDefault();
+
     if (window.location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
-        if (hash === "#skills") {
-          window.location.hash = "skills";
-          window.dispatchEvent(new HashChangeEvent("hashchange"));
-        } else if (hash === "#contact") {
-          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-        }
+        document
+          .getElementById("contact")
+          ?.scrollIntoView({ behavior: "smooth" });
       }, 400);
     } else {
-      if (hash === "#skills") {
-        window.location.hash = "skills";
-        window.dispatchEvent(new HashChangeEvent("hashchange"));
-      } else if (hash === "#contact") {
-        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-      }
+      document
+        .getElementById("contact")
+        ?.scrollIntoView({ behavior: "smooth" });
     }
+
+    setMenuOpen(false);
   };
 
   return (
@@ -62,37 +72,33 @@ function Navbar() {
             className={`hamburger ${menuOpen ? "active" : ""}`}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span />
+            <span />
+            <span />
           </div>
         )}
       </header>
 
       {!isMobile && (
         <ul className="nav-desktop">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About Me</a></li>
           <li>
-            <a
-              href="#skills"
-              onClick={(e) => {
-                e.preventDefault();
-                goToSection("#skills");
-              }}
-            >
+            <a href="/" onClick={goHome}>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/about">About Me</a>
+          </li>
+          <li>
+            <a href="/" onClick={goToSkills}>
               Skills
             </a>
           </li>
-          <li><a href="#projects">Projects</a></li>
           <li>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                goToSection("#contact");
-              }}
-            >
+            <a href="#projects">Projects</a>
+          </li>
+          <li>
+            <a href="#contact" onClick={goToContact}>
               Contact
             </a>
           </li>
@@ -100,64 +106,37 @@ function Navbar() {
       )}
 
       {isMobile && (
-        <nav 
-        ref={menuRef}
-        className={`nav-drill ${menuOpen ? "nav-is-toggled" : ""}`}>
+        <nav
+          ref={menuRef}
+          className={`nav-drill ${menuOpen ? "nav-is-toggled" : ""}`}
+        >
           <ul className="nav-items nav-level-1">
             <li className="nav-item">
-              <a
-                href="/"
-                className="portofolio-nav-link"
-                onClick={() => setMenuOpen(false)}
-              >
+              <a href="/" onClick={goHome}>
                 Home
               </a>
             </li>
 
             <li className="nav-item">
-              <a
-                href="/about"
-                className="portofolio-nav-link"
-                onClick={() => setMenuOpen(false)}
-              >
+              <a href="/about" onClick={() => setMenuOpen(false)}>
                 About Me
               </a>
             </li>
 
             <li className="nav-item">
-              <a
-                href="#skills"
-                className="portofolio-nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goToSection("#skills");
-                  setMenuOpen(false);
-                }}
-              >
+              <a href="/" onClick={goToSkills}>
                 Skills
               </a>
             </li>
 
             <li className="nav-item">
-              <a
-                href="#projects"
-                className="portofolio-nav-link"
-                onClick={() => setMenuOpen(false)}
-              >
+              <a href="#projects" onClick={() => setMenuOpen(false)}>
                 Projects
               </a>
             </li>
 
             <li className="nav-item">
-              <a
-                href="#contact"
-                className="portofolio-nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goToSection("#contact");
-                  setMenuOpen(false);
-                }}
-              >
+              <a href="#contact" onClick={goToContact}>
                 Contact
               </a>
             </li>

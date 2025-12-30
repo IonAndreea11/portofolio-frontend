@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap");
 
-/* === NAVBAR TOP (LOGO + HAMBURGER) === */
 .nav-top {
   display: flex;
   align-items: center;
@@ -20,7 +19,7 @@
 
 /* === LOGO === */
 .navbar-logo {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 600;
   font-size: 1.8rem;
   color: var(--text);
@@ -121,7 +120,6 @@
   transform: scale(1.1);
 }
 
-/* === DESKTOP NAVBAR === */
 @media (min-width: 769px) {
   .nav-desktop {
     display: flex;
@@ -157,10 +155,18 @@
     animation: fadeInLinks 0.6s ease forwards;
   }
 
-  .nav-desktop li:nth-child(1) { animation-delay: 0.2s; }
-  .nav-desktop li:nth-child(2) { animation-delay: 0.35s; }
-  .nav-desktop li:nth-child(3) { animation-delay: 0.5s; }
-  .nav-desktop li:nth-child(4) { animation-delay: 0.65s; }
+  .nav-desktop li:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  .nav-desktop li:nth-child(2) {
+    animation-delay: 0.35s;
+  }
+  .nav-desktop li:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+  .nav-desktop li:nth-child(4) {
+    animation-delay: 0.65s;
+  }
 
   @keyframes fadeInLinks {
     from {
@@ -212,7 +218,6 @@
   }
 }
 
-/* === MOBILE MENU === */
 @media (max-width: 768px) {
   .nav-desktop {
     display: none;
@@ -249,10 +254,18 @@
     animation: fadeInItem 0.4s ease forwards;
   }
 
-  .nav-is-toggled .nav-item:nth-child(1) { animation-delay: 0.1s; }
-  .nav-is-toggled .nav-item:nth-child(2) { animation-delay: 0.2s; }
-  .nav-is-toggled .nav-item:nth-child(3) { animation-delay: 0.3s; }
-  .nav-is-toggled .nav-item:nth-child(4) { animation-delay: 0.4s; }
+  .nav-is-toggled .nav-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .nav-is-toggled .nav-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .nav-is-toggled .nav-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .nav-is-toggled .nav-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
 
   @keyframes fadeInItem {
     from {
@@ -277,7 +290,7 @@
   }
 
   .portofolio-nav-link:hover {
-    background: linear-gradient(90deg, var(--primary) 0%, #48CAE4 100%);
+    background: linear-gradient(90deg, var(--primary) 0%, #48cae4 100%);
     color: #ffffff;
     transform: translateX(8px);
     text-shadow: 0 0 6px rgba(144, 224, 239, 0.6);

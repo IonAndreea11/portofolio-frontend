@@ -6,21 +6,21 @@
 }
 
 .resume-title {
-    font-family: "Raleway", sans-serif;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 10px;
+  font-family: "Raleway", sans-serif;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
 }
 
 .resume-title::after {
-    content: "";
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: var(--primary);
-    margin: 12px auto 0;
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--primary);
+  margin: 12px auto 0;
 }
 
 .resume-subtitle {
@@ -47,6 +47,10 @@
   animation: sidebarSlideIn 0.8s ease forwards;
   opacity: 0;
   transform: translateX(-30px);
+}
+
+#skills {
+  scroll-margin-top: 160px !important;
 }
 
 @keyframes sidebarSlideIn {
@@ -94,7 +98,7 @@
   background: rgba(255, 255, 255, 0.02);
   border-radius: 10px;
   padding: 20px 30px;
-   min-height: 480px; 
+  min-height: 480px;
   max-height: 480px;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -140,7 +144,6 @@
   color: var(--primary);
   font-size: 0.9rem;
 }
-
 
 .skills-list {
   display: flex;
@@ -225,7 +228,6 @@
   line-height: 1.4;
 }
 
-
 .project-link {
   display: flex;
   align-items: center;
@@ -245,7 +247,6 @@
   color: var(--secondary);
   transform: scale(1.05);
 }
-
 
 .top-gradient,
 .bottom-gradient {
@@ -300,7 +301,6 @@
   transform: translateX(6px);
   box-shadow: 0 0 6px var(--primary-transparent);
 }
-
 
 @media (max-width: 900px) {
   .resume-section {
@@ -432,17 +432,14 @@
     height: 11px;
     background: var(--primary);
     border-radius: 50%;
-    box-shadow:
-      0 0 0 3px rgba(0, 224, 255, 0.1),
-      0 0 8px rgba(0, 224, 255, 0.4);
+    box-shadow: 0 0 0 3px rgba(0, 224, 255, 0.1), 0 0 8px rgba(0, 224, 255, 0.4);
     transition: all 0.3s ease;
     z-index: 2;
   }
 
   .resume-item:hover .resume-dot {
     background: var(--light-primary);
-    box-shadow:
-      0 0 0 4px rgba(0, 224, 255, 0.25),
+    box-shadow: 0 0 0 4px rgba(0, 224, 255, 0.25),
       0 0 14px rgba(0, 224, 255, 0.6);
     transform: scale(1.15);
   }

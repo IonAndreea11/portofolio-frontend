@@ -10,49 +10,29 @@ import {
 } from "react-icons/fa";
 import { motion, useInView } from "framer-motion";
 import { projects } from "../data/projectsData.js";
+import { useLocation } from "react-router-dom";
 
-const AnimatedItem = ({
-  children,
-  delay = 0,
-  index,
-  onMouseEnter,
-  onClick,
-}) => {
+const AnimatedItem = ({ children, delay = 0 }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.5, triggerOnce: false });
+
   return (
     <motion.div
       ref={ref}
-      data-index={index}
-      onMouseEnter={onMouseEnter}
-      onClick={onClick}
       initial={{ scale: 0.7, opacity: 0 }}
-      animate={inView ? { scale: 1, opacity: 1 } : { scale: 0.7, opacity: 0 }}
+      animate={inView ? { scale: 1, opacity: 1 } : {}}
       transition={{ duration: 0.25, delay }}
-      style={{ marginBottom: "1rem", cursor: "pointer" }}
+      style={{ marginBottom: "1rem" }}
     >
       {children}
     </motion.div>
   );
 };
 
-const AnimatedList = ({ items = [], showGradients = true }) => {
-  const listRef = useRef(null);
-  const [topGradientOpacity, setTopGradientOpacity] = useState(0);
-  const [bottomGradientOpacity, setBottomGradientOpacity] = useState(1);
-
-  const handleScroll = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-    setTopGradientOpacity(Math.min(scrollTop / 50, 1));
-    const bottomDistance = scrollHeight - (scrollTop + clientHeight);
-    setBottomGradientOpacity(
-      scrollHeight <= clientHeight ? 0 : Math.min(bottomDistance / 50, 1)
-    );
-  };
-
+const AnimatedList = ({ items = [] }) => {
   return (
     <div className="scroll-list-container">
-      <div className="scroll-list" ref={listRef} onScroll={handleScroll}>
+      <div className="scroll-list">
         {items.map((project, index) => (
           <AnimatedItem key={index} delay={0.1 * index}>
             <div className="project-item">
@@ -74,40 +54,88 @@ const AnimatedList = ({ items = [], showGradients = true }) => {
           </AnimatedItem>
         ))}
       </div>
-
-      {showGradients && (
-        <>
-          <div
-            className="top-gradient"
-            style={{ opacity: topGradientOpacity }}
-          ></div>
-          <div
-            className="bottom-gradient"
-            style={{ opacity: bottomGradientOpacity }}
-          ></div>
-        </>
-      )}
     </div>
   );
 };
 
 function HomeResume() {
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState("education");
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      if (window.location.hash === "#skills") {
-        setActiveTab("skills");
-        document
-          .getElementById("skills")
-          ?.scrollIntoView({ behavior: "smooth" });
-      }
-    };
+  const educationData = [
+    {
+      title: "IT School – Romania",
+      subtitle: "Front-End Web Development",
+      date: "2024 – 2025",
+    },
+    {
+      title:
+        "National University of Science and Technology Politehnica Bucharest",
+      subtitle: "Master’s Degree – Engineering Graphics and Design",
+      date: "2021 – 2023",
+    },
+    {
+      title:
+        "National University of Science and Technology Politehnica Bucharest",
+      subtitle:
+        "Bachelor’s Degree – Applied Informatics in Electrical Engineering",
+      date: "2016 – 2020",
+    },
+  ];
 
-    handleHashChange();
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
+  const workData = [
+    {
+      title: "Full Stack Developer – Freelance",
+      subtitle: [
+        "Developed full-stack web applications using React, TypeScript, Node.js, and SQL",
+        "Designed responsive and user-friendly interfaces with a strong focus on UI/UX",
+        "Built REST APIs and handled database logic",
+        "Worked independently on end-to-end projects from concept to deployment",
+      ],
+      date: "2024 – Present",
+    },
+    {
+      title: "Security Systems Design Engineer",
+      subtitle: [
+        "Designed and implemented integrated security systems (CCTV, access control, fire detection)",
+        "Configured IP cameras and provided remote technical support",
+        "Coordinated on-site technical teams and supervised system installations",
+        "Prepared technical documentation, cost estimates, and monthly reports",
+      ],
+      date: "2019 – 2025",
+    },
+  ];
+
+  // useEffect(() => {
+  //   if (location.state?.tab) {
+  //     setActiveTab(location.state.tab);
+
+  //     requestAnimationFrame(() => {
+  //       document
+  //         .getElementById(location.state.tab)
+  //         ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  //     });
+  //   }
+  // }, [location.state]);
+
+  useEffect(() => {
+    if (location.state?.tab === "skills") {
+      setActiveTab("skills");
+
+      requestAnimationFrame(() => {
+        const el = document.getElementById("skills");
+        if (!el) return;
+
+        const yOffset = -200;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      });
+    }
+  }, [location.state]);
 
   const tabs = [
     { id: "education", icon: <FaGraduationCap />, label: "Education" },
@@ -115,45 +143,6 @@ function HomeResume() {
     { id: "skills", icon: <FaLaptopCode />, label: "Programming Skills" },
     { id: "projects", icon: <FaProjectDiagram />, label: "Projects" },
     { id: "interests", icon: <FaPalette />, label: "Interests" },
-  ];
-
-  const educationData = [
-    {
-      title: "IT School - Romania",
-      subtitle: "Front-End Web Development",
-      date: "2024 - 2025",
-    },
-    {
-      title:
-        "National University of Science and Technology Politehnica Bucharest",
-      subtitle: "Master’s degree: Engineering Graphics and Design",
-      date: "2021 - 2023",
-    },
-    {
-      title:
-        "National University of Science and Technology Politehnica Bucharest",
-      subtitle:
-        "Bachelor’s Degree: Applied Informatics in Electrical Engineering",
-      date: "2016 - 2020",
-    },
-  ];
-
-  const workData = [
-    {
-      title: "Full Stack Developer - Freelance",
-      subtitle: "React, Typescript, Node.js, UI/UX, SQL",
-      date: "Present",
-    },
-    {
-      title: "Security Systems Design Engineer",
-      subtitle: [
-        "Designed integrated security systems",
-        "Configured IP cameras and provided remote support",
-        "Coordinated on-site teams and guided physical repairs",
-        "Created detailed monthly reports and cost estimates",
-      ],
-      date: "2019 - 2025",
-    },
   ];
 
   return (
@@ -213,44 +202,38 @@ function HomeResume() {
             </div>
           )}
 
-          {activeTab === "skills" && (
-            <div className="skills-list" id="skills">
-              <span>JavaScript (ES6+)</span>
-              <span>TypeScript</span>
-              <span>React.js</span>
-              <span>Node.js</span>
-              <span>Express</span>
-              <span>MySQL</span>
-              <span>PostgreSQL</span>
-              <span>GitHub</span>
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>React Native</span>
-              <span>Bootstrap</span>
-              <span>DOM APIs</span>
-              <span>Canva</span>
-            </div>
-          )}
+          <div id="skills">
+            {activeTab === "skills" && (
+              <div className="skills-list">
+                <span>JavaScript (ES6+)</span>
+                <span>TypeScript</span>
+                <span>React.js</span>
+                <span>React Native</span>
+                <span>Node.js</span>
+                <span>Express.js</span>
+                <span>REST APIs</span>
+                <span>PostgreSQL</span>
+                <span>MySQL</span>
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>Bootstrap</span>
+                <span>Tailwind CSS</span>
+                <span>Git & GitHub</span>
+                <span>DOM APIs</span>
+                <span>UI / UX Design</span>
+                <span>Canva</span>
+              </div>
+            )}
+          </div>
 
           {activeTab === "projects" && <AnimatedList items={projects} />}
 
           {activeTab === "interests" && (
             <div className="resume-interests">
               <ul>
-                <li>Building scalable and secure web applications ⚙️</li>
-                <li>UI/UX design and modern frontend technologies 🎨</li>
-                <li>Exploring AI tools for smarter workflows 🤖</li>
-                <li>
-                  Learning German 🇩🇪 and French 🇫🇷 while exploring European tech
-                  culture
-                </li>
-                <li>Participating in tech communities and hackathons 💬</li>
-                <li>Learning independently through online courses 🎓</li>
-                <li>Watching theatre plays and movies 🎭🎬</li>
-                <li>
-                  Enjoying anime, manga, and story-driven video games 🎮📚
-                </li>
-                <li>Reading both fiction and tech literature 📖</li>
+                <li>UI/UX design 🎨</li>
+                <li>Modern frontend ⚛️</li>
+                <li>Anime & games 🎮</li>
               </ul>
             </div>
           )}
