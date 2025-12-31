@@ -65,7 +65,9 @@ function Navbar() {
   return (
     <>
       <header className="nav-top">
-        <div className="navbar-logo">Ion Andreea</div>
+        <a href="/" className="navbar-logo" style={{ textDecoration: "none" }}>
+          Ion Andreea
+        </a>
 
         {isMobile && (
           <div
