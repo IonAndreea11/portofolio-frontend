@@ -108,6 +108,21 @@ function AboutMe() {
               </span>
               <span className="p-label">Get in touch</span>
             </button>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              className="view-live-btn"
+              href="https://drive.google.com/file/d/1VgfmdRs5npIN5lCPOBk5hr36VwoX7J22/view?usp=sharing"
+              style={{ marginLeft: "40px" }}
+            >
+              <span className="p-icon">
+                <span className="p-dot" />
+                <span className="p-arrow">
+                  <FaArrowRight />
+                </span>
+              </span>
+              <span className="p-label">Get Resume</span>
+            </a>
           </div>
         </section>
 

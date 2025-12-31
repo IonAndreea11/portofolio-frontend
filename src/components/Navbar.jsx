@@ -95,7 +95,15 @@ function Navbar() {
             </a>
           </li>
           <li>
-            <a href="#projects">Projects</a>
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/", { state: { scrollTo: "projects" } });
+              }}
+            >
+              Projects
+            </a>
           </li>
           <li>
             <a href="#contact" onClick={goToContact}>
@@ -130,7 +138,13 @@ function Navbar() {
             </li>
 
             <li className="nav-item">
-              <a href="#projects" onClick={() => setMenuOpen(false)}>
+              <a
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/", { state: { scrollTo: "projects" } });
+                }}
+              >
                 Projects
               </a>
             </li>

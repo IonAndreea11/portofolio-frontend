@@ -1,11 +1,26 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/HomeProjects.css";
 import { projects } from "../data/projectsData";
 import FlipCard from "./FlipCard";
 
 function HomeProjects() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollTo !== "projects") return;
+
+    requestAnimationFrame(() => {
+      const el = document.getElementById("projects");
+      if (!el) return;
+
+      const yOffset = -160;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  }, [location.state]);
 
   return (
     <section className="home-projects-section" id="projects">
