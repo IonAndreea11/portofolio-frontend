@@ -7,6 +7,7 @@ function Navbar() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const navigate = useNavigate();
   const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,7 +23,12 @@ function Navbar() {
     if (!isMobile || !menuOpen) return;
 
     const handleClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(e.target)
+      ) {
         setMenuOpen(false);
       }
     };
@@ -35,6 +41,7 @@ function Navbar() {
     e.preventDefault();
     navigate("/");
     window.scrollTo({ top: 0, behavior: "smooth" });
+    setMenuOpen(false);
   };
 
   const goToSkills = (e) => {
@@ -65,14 +72,23 @@ function Navbar() {
   return (
     <>
       <header className="nav-top">
-        <a href="/" className="navbar-logo" style={{ textDecoration: "none" }}>
+        <a
+          href="/"
+          className="navbar-logo"
+          onClick={(e) => {
+            if (menuOpen) {
+              e.preventDefault();
+            }
+          }}
+        >
           Ion Andreea
         </a>
 
         {isMobile && (
           <div
+            ref={hamburgerRef}
             className={`hamburger ${menuOpen ? "active" : ""}`}
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setMenuOpen((prev) => !prev)}
           >
             <span />
             <span />
@@ -145,6 +161,7 @@ function Navbar() {
                 onClick={(e) => {
                   e.preventDefault();
                   navigate("/", { state: { scrollTo: "projects" } });
+                  setMenuOpen(false);
                 }}
               >
                 Projects
