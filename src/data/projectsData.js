@@ -5,10 +5,29 @@ import carpe4 from "../assets/project1/carpe4.png";
 import carpe5 from "../assets/project1/carpe5.png";
 import carpe6 from "../assets/project1/carpe6.png";
 import portofolio from "../assets/project2/portofolio.png";
+import wavematch1 from "../assets/project3/wavematch1.png";
+import wavematch2 from "../assets/project3/wavematch2.png";
+import wavematch3 from "../assets/project3/wavematch3.png";
 
 export const projects = [
   {
     id: 1,
+    title: "WaveMatch",
+    description:
+      "WaveMatch is a client-side audio fingerprinting web app that captures sound, generates audio fingerprints, and compares recordings in real time. It features a smooth audio-reactive canvas visualization and a modern dark UI built with JavaScript and the Web Audio API.",
+    details: [
+      "WaveMatch is a web-based audio fingerprinting application inspired by the core concept behind Shazam. The app captures audio from the user’s microphone, analyzes its frequency spectrum, generates a stable audio fingerprint, and compares it against a previously saved fingerprint to determine whether the two recordings originate from the same sound source.",
+      "The application runs entirely client-side, without a backend, using the Web Audio API for real-time audio capture and signal processing. Audio data is analyzed through an AnalyserNode, and dominant frequency components are extracted over multiple frames to build a consistent and reliable fingerprint.",
+      "To enhance user experience, the project includes a real-time audio-reactive visualizer in the form of a glowing animated orb. The orb is rendered using the HTML5 <canvas> API and reacts dynamically to audio energy, using smoothing and amplification techniques to achieve fluid, light-like motion rather than rigid or spiky shapes.",
+      "The user interface follows a modern audio-tech dark aesthetic, focusing on clarity, minimalism, and strong visual feedback. Users can save an audio fingerprint and later record another sound to compare it, receiving a clear match result (“Same sound” or “Different sound”).",
+      "This project demonstrates practical knowledge of audio signal processing, canvas-based animations, modular JavaScript architecture, and real-time interaction between audio analysis and visual rendering.",
+    ],
+    tech: ["JavaScript (ES6+)", "CSS", "HTML"],
+    images: [wavematch1, wavematch3, wavematch2],
+    link: "https://wavematch.netlify.app/",
+  },
+  {
+    id: 2,
     title: "Carpe Rescue Website",
     description:
       "A full-stack rescue shelter web application built with React, Node.js, and PostgreSQL, showcasing animals available for adoption, shelter projects, and articles, with a secure admin dashboard for content management.",
@@ -42,7 +61,7 @@ export const projects = [
     link: "https://carperescue.ro/",
   },
   {
-    id: 2,
+    id: 3,
     title: "Personal Portfolio Website",
     description:
       "A modern personal portfolio web application built with React and Express, designed to showcase projects, skills, and contact information. The application includes client-side routing, a responsive UI, and a functional contact form with email delivery handled on the server side.",
